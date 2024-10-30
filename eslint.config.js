@@ -8,7 +8,6 @@ const tseslint = require('typescript-eslint');
 
 // Allows us to bring in the recommended rules for Angular projects from angular-eslint
 const angular = require('angular-eslint');
-// const prettier = require('eslint-plugin-prettier/recommended');
 
 // Export our config array, which is composed together thanks to the typed utility function from typescript-eslint
 module.exports = tseslint.config(
@@ -46,6 +45,47 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'default',
+          format: ['camelCase'],
+          leadingUnderscore: 'allow',
+          trailingUnderscore: 'allow',
+          filter: {
+            regex: '^(ts-jest|\\^.*)$',
+            match: false,
+          },
+        },
+        {
+          selector: 'default',
+          format: ['camelCase'],
+          leadingUnderscore: 'allow',
+          trailingUnderscore: 'allow',
+        },
+        {
+          selector: 'variable',
+          format: ['camelCase', 'UPPER_CASE'],
+          leadingUnderscore: 'allow',
+          trailingUnderscore: 'allow',
+        },
+        {
+          selector: 'typeLike',
+          format: ['PascalCase'],
+        },
+        {
+          selector: 'enumMember',
+          format: ['PascalCase'],
+        },
+        {
+          selector: 'property',
+          format: null,
+          filter: {
+            regex: '^(host)$',
+            match: false,
+          },
+        },
+      ],
     },
   },
   {
@@ -59,5 +99,5 @@ module.exports = tseslint.config(
       ...angular.configs.templateAccessibility,
     ],
     rules: {},
-  },
+  }
 );
