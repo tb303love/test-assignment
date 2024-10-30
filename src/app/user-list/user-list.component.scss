@@ -1,0 +1,8 @@
+:host {
+  .user-status {
+    color: red;
+    &.active {
+      color: green;
+    }
+  }
+}

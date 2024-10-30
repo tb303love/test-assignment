@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add new user</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmitUserForm()">
+  <div class="modal-body">
+    @let formErrors = userForm.errors; @if(formErrors?.['userNAmeAlreadyDefined']) {
+    <p>Username already in use</p>
+    }
+    <div class="row"></div>
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <input type="text" class="form-control col" id="name" formControlName="name" />
+    </div>
+    <div class="form-check form-switch form-check-reverse row d-flex">
+      <label for="active" class="form-check-label col-2">Active</label>
+      <div class="col-auto">
+        <input type="checkbox" class="form-check-input" formControlName="active" id="active" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid || userForm.pending">Create</button>
+  </div>
+</form>
