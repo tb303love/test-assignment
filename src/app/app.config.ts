@@ -33,7 +33,7 @@ const fakeBackendInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
       // Update users in memory db
       if (body && typeof body === 'object' && 'active' in body && 'name' in body) {
         const nextId = inMemoryDb.users.length + 1;
-        inMemoryDb.users = inMemoryDb.users.concat([{ name: String(body.active), active: Boolean(body.active), id: nextId }]);
+        inMemoryDb.users = inMemoryDb.users.concat([{ name: String(body.name), active: Boolean(body.active), id: nextId }]);
         return of(new HttpResponse({ status: 200, body: nextId })).pipe(delay(1000));
       }
       return of(new HttpResponse({ status: 422 })).pipe(delay(1000));
